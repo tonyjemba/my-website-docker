@@ -1,0 +1,5 @@
+.git/
+.gitignore
+./my-website/node_modules/
+./my-website/.nuxt/
+./my-website/.output/

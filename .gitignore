@@ -1,0 +1,8 @@
+./my-website/node_modules
+*.log*
+./my-website/.nuxt
+./my-website.nitro
+./my-website/.cache
+./my-website/.output
+./my-website/.env
+./my-website/dist
