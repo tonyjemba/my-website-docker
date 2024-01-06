@@ -3,9 +3,6 @@ FROM node:18.18.2-alpine3.17  as build-stage
 # make it the working directory
 WORKDIR /var/www/portfolio
 
-# install nano
-RUN apk update && apk add nano
-
 # copy everthing to the working directory
 COPY . .
 
@@ -13,7 +10,7 @@ COPY . .
 RUN npm install
 
 #build the project
-RUN npm run build
+RUN npm run generate
 
 #remove node modules after building
 RUN rm -rf node_modules
@@ -24,7 +21,7 @@ FROM node:18.18.2-alpine3.17 as prod-stage
 # make it the working directory
 WORKDIR /var/www/portfolio
 
-
 COPY --from=build-stage /var/www/portfolio/.output  ./.output/
 
-CMD [ "node", ".output/server/index.mjs" ]
+#  runing the static files
+CMD [ "npx", "serve", ".output/public" ]
