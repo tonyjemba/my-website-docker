@@ -11,8 +11,8 @@ services:
         max_attempts: 3
         window: 120s
     ports:
-      - '8080:80'
-      # - '443:443'
+      - '80:80'
+      - '443:443'
     restart: always
     depends_on:
       - portfolio
