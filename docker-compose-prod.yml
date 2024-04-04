@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  nginx:
+    build: 
+      context: ./
+      dockerfile: Dockerfile.prod
+    container_name: prodnginx
+    restart: always
+    tty: true
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./error.log:/var/log/nginx/error.log
+      - ./conf.d:/etc/nginx/conf.d
+      - ../onlinePharmacy/:/var/www/html/onlinePharmacy/
+      - sharedfilestorage:/var/www/html/onlinePharmacy/storage/app/public/
+      - sharedfilestorage:/var/www/html/onlinePharmacy/public/storage/
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+    networks:
+      - portfolio
+    
+  
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+  
+
+
+networks:
+  portfolio:
+    external: true
+
+volumes:
+  sharedfilestorage:
+    external: true
