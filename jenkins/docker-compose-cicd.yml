@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+
+  jenkins:
+    image: jenkins/jenkins:2.440.2-lts-jdk11
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jekins-data:/var/jenkins_home
+    networks:
+      - portfolio
+
+volumes:
+  jekins-data:
+
+networks:
+  portfolio:
+    external: true
