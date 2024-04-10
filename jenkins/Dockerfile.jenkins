@@ -1,3 +1,2 @@
 FROM jenkins/jenkins:2.452-jdk21
 
-RUN usermod -aG docker ${USER}
