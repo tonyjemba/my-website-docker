@@ -9,6 +9,8 @@ services:
       - "50000:50000"
     volumes:
       - jekins-data:/var/jenkins_home
+      # Mounting Docker socket from host because we use docker to create build nodes 
+      - /var/run/docker.sock:/var/run/docker.sock 
     networks:
       - portfolio
 
