@@ -3,14 +3,13 @@ version: '3.8'
 services:
 
   jenkins:
-    image: jenkins/jenkins:2.452-jdk21
+    context: ./
+    dockerfile: Dockerfile.jenkins
     ports:
       - "8080:8080"
       - "50000:50000"
     volumes:
       - jekins-data:/var/jenkins_home
-      # Mounting Docker socket from host because we use docker to create build nodes 
-      - /var/run/docker.sock:/var/run/docker.sock 
     networks:
       - portfolio
 
