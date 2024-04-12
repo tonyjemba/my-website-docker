@@ -1,5 +1,6 @@
 FROM jenkins/jenkins:2.452-jdk21
 USER root
 RUN apt update && curl -fsSL https://get.docker.com | sh
+RUN chmod 660 /var/run/docker.sock
 RUN usermod -aG docker jenkins
 USER jenkins
