@@ -13,6 +13,7 @@ services:
       - jekins-data:/var/jenkins_home
       #mounting docker daemon  socket to the jenkins container to be able to use docker slave nodes
       - /var/run/docker.sock:/var/run/docker.sock
+    entrypoint: /bin/bash -c "chmod 660 /var/run/docker.sock"
     networks:
       - portfolio
 
