@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+
+  jenkins-agent:
+    build: 
+      context: ./
+      dockerfile: Dockerfile.agent
+
