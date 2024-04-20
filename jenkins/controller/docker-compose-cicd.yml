@@ -20,6 +20,8 @@ services:
 
 volumes:
   jekins-data:
+  onlinepharmacyvol:
+    external: true
 
 networks:
   portfolio:
