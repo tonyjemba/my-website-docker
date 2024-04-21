@@ -13,8 +13,6 @@ services:
       - jekins-data:/var/jenkins_home
       #mounting docker daemon  socket to the jenkins container to be able to use docker in the jenkins container to setup build agents
       - /var/run/docker.sock:/var/run/docker.sock
-      #bind mount Onlinepharmacy code with its jenkins workspace
-      - onlinepharmacyvol:/var/jenkins_home/workspace/OnlinePharmacy/
     networks:
       - portfolio
 
